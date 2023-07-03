@@ -1,0 +1,16 @@
+input_dir: EasyUIBuilderSPMPlaygroundApp/EasyUIBuilder/
+output_dir: EasyUIBuilderSPMPlaygroundApp/EasyUIBuilder/
+
+## XCAssets
+# 1
+xcassets:
+  # 2
+  inputs:
+    - Images.xcassets
+    - Colors.xcassets
+  # 3
+  outputs:
+    # 4
+    templateName: swift5
+    # 5
+    output: XCAssets+Generated.swift
