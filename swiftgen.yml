@@ -1,11 +1,11 @@
 input_dir: Sources/EasyUIBuilder/Resources/
-
 output_dir: Sources/EasyUIBuilder/Generated/
 
 xcassets:
   inputs:
     - Images.xcassets
     - Colors.xcassets
+
   outputs:
     templateName: swift5
     output: EasyUIAssets.swift
