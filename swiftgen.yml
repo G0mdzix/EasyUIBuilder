@@ -10,5 +10,14 @@ xcassets:
     templateName: swift5
     output: EasyUIAssets.swift
     params:
-      publicAccess: "public"
+      publicAccess: true
       enumName: EasyUIAssets
+
+fonts:
+  inputs: Fonts/
+  outputs:
+    templateName: swift5
+    output: EasyUIFonts.swift
+    params:
+      publicAccess: true
+      enumName: EasyUIFonts
