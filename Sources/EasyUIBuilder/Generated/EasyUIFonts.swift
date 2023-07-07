@@ -6,35 +6,24 @@
 #elseif os(iOS) || os(tvOS) || os(watchOS)
   import UIKit.UIFont
 #endif
-#if canImport(SwiftUI)
-  import SwiftUI
-#endif
 
 // Deprecated typealiases
 @available(*, deprecated, renamed: "FontConvertible.Font", message: "This typealias will be removed in SwiftGen 7.0")
 public typealias Font = FontConvertible.Font
 
-// swiftlint:disable superfluous_disable_command file_length implicit_return
+// swiftlint:disable superfluous_disable_command
+// swiftlint:disable file_length
+// swiftlint:disable implicit_return
 
 // MARK: - Fonts
 
 // swiftlint:disable identifier_name line_length type_body_length
 public enum EasyUIFonts {
-  public enum Montserrat {
-    public static let black = FontConvertible(name: "Montserrat-Black", family: "Montserrat", path: "Montserrat-Black.ttf")
-    public static let blackItalic = FontConvertible(name: "Montserrat-BlackItalic", family: "Montserrat", path: "Montserrat-BlackItalic.ttf")
-    public static let bold = FontConvertible(name: "Montserrat-Bold", family: "Montserrat", path: "Montserrat-Bold.ttf")
-    public static let boldItalic = FontConvertible(name: "Montserrat-BoldItalic", family: "Montserrat", path: "Montserrat-BoldItalic.ttf")
-    public static let extraBold = FontConvertible(name: "Montserrat-ExtraBold", family: "Montserrat", path: "Montserrat-ExtraBold.ttf")
-    public static let extraBoldItalic = FontConvertible(name: "Montserrat-ExtraBoldItalic", family: "Montserrat", path: "Montserrat-ExtraBoldItalic.ttf")
-    public static let medium = FontConvertible(name: "Montserrat-Medium", family: "Montserrat", path: "Montserrat-Medium.ttf")
-    public static let mediumItalic = FontConvertible(name: "Montserrat-MediumItalic", family: "Montserrat", path: "Montserrat-MediumItalic.ttf")
-    public static let regular = FontConvertible(name: "Montserrat-Regular", family: "Montserrat", path: "Montserrat-Regular.ttf")
-    public static let semiBold = FontConvertible(name: "Montserrat-SemiBold", family: "Montserrat", path: "Montserrat-SemiBold.ttf")
-    public static let semiBoldItalic = FontConvertible(name: "Montserrat-SemiBoldItalic", family: "Montserrat", path: "Montserrat-SemiBoldItalic.ttf")
-    public static let all: [FontConvertible] = [black, blackItalic, bold, boldItalic, extraBold, extraBoldItalic, medium, mediumItalic, regular, semiBold, semiBoldItalic]
+  public enum Marianne {
+    public static let bold = FontConvertible(name: "Marianne-Bold", family: "Marianne", path: "Marianne-Bold.otf")
+    public static let all: [FontConvertible] = [bold]
   }
-  public static let allCustomFonts: [FontConvertible] = [Montserrat.all].flatMap { $0 }
+  public static let allCustomFonts: [FontConvertible] = [Marianne.all].flatMap { $0 }
   public static func registerAllCustomFonts() {
     allCustomFonts.forEach { $0.register() }
   }
@@ -54,29 +43,9 @@ public struct FontConvertible {
   public typealias Font = UIFont
   #endif
 
-  public func font(size: CGFloat) -> Font {
-    guard let font = Font(font: self, size: size) else {
-      fatalError("Unable to initialize font '\(name)' (\(family))")
-    }
-    return font
+  public func font(size: CGFloat) -> Font! {
+    return Font(font: self, size: size)
   }
-
-  #if canImport(SwiftUI)
-  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
-  public func swiftUIFont(size: CGFloat) -> SwiftUI.Font {
-    return SwiftUI.Font.custom(self, size: size)
-  }
-
-  @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
-  public func swiftUIFont(fixedSize: CGFloat) -> SwiftUI.Font {
-    return SwiftUI.Font.custom(self, fixedSize: fixedSize)
-  }
-
-  @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
-  public func swiftUIFont(size: CGFloat, relativeTo textStyle: SwiftUI.Font.TextStyle) -> SwiftUI.Font {
-    return SwiftUI.Font.custom(self, size: size, relativeTo: textStyle)
-  }
-  #endif
 
   public func register() {
     // swiftlint:disable:next conditional_returns_on_newline
@@ -84,57 +53,26 @@ public struct FontConvertible {
     CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
   }
 
-  fileprivate func registerIfNeeded() {
-    #if os(iOS) || os(tvOS) || os(watchOS)
-    if !UIFont.fontNames(forFamilyName: family).contains(name) {
-      register()
-    }
-    #elseif os(macOS)
-    if let url = url, CTFontManagerGetScopeForURL(url as CFURL) == .none {
-      register()
-    }
-    #endif
-  }
-
   fileprivate var url: URL? {
-    // swiftlint:disable:next implicit_return
     return BundleToken.bundle.url(forResource: path, withExtension: nil)
   }
 }
 
 public extension FontConvertible.Font {
   convenience init?(font: FontConvertible, size: CGFloat) {
-    font.registerIfNeeded()
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    if !UIFont.fontNames(forFamilyName: font.family).contains(font.name) {
+      font.register()
+    }
+    #elseif os(macOS)
+    if let url = font.url, CTFontManagerGetScopeForURL(url as CFURL) == .none {
+      font.register()
+    }
+    #endif
+
     self.init(name: font.name, size: size)
   }
 }
-
-#if canImport(SwiftUI)
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
-public extension SwiftUI.Font {
-  static func custom(_ font: FontConvertible, size: CGFloat) -> SwiftUI.Font {
-    font.registerIfNeeded()
-    return custom(font.name, size: size)
-  }
-}
-
-@available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
-public extension SwiftUI.Font {
-  static func custom(_ font: FontConvertible, fixedSize: CGFloat) -> SwiftUI.Font {
-    font.registerIfNeeded()
-    return custom(font.name, fixedSize: fixedSize)
-  }
-
-  static func custom(
-    _ font: FontConvertible,
-    size: CGFloat,
-    relativeTo textStyle: SwiftUI.Font.TextStyle
-  ) -> SwiftUI.Font {
-    font.registerIfNeeded()
-    return custom(font.name, size: size, relativeTo: textStyle)
-  }
-}
-#endif
 
 // swiftlint:disable convenience_type
 private final class BundleToken {
