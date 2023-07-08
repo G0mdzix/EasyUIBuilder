@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
 
-public enum TablesBuilder {
+public enum ViewBuilder {
 
 }

@@ -1,8 +1,7 @@
 // MARK: - UI Elements Builder
 
 public enum EasyUIBuilder {
-  public typealias Buttons = ButtonsAssembly
-  public typealias Labels = LabelsBuilder
-  public typealias TableViews = TablesBuilder
-  public typealias Views = ViewsBuilder
+  public typealias Buttons = ButtonBuilder
+  public typealias Labels = LabelBuilder
+  public typealias Views = ViewBuilder
 }
