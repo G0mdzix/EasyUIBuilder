@@ -25,7 +25,8 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum EasyUIAssets {
   public enum Colors {
-    public static let pink = ColorAsset(name: "pink")
+    public static let nightDark = ColorAsset(name: "nightDark")
+    public static let transparent = ColorAsset(name: "transparent")
   }
   public enum Images {
     public static let defaultIcon = ImageAsset(name: "defaultIcon")
