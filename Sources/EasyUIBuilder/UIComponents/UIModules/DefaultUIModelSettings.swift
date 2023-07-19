@@ -20,7 +20,6 @@ public enum DefaultUIModelSettings {
 
   public static let button = ButtonModel(
     color: Constants.button.color,
-    font: Constants.button.font,
     image: Constants.button.image,
     layer: layer
   )
