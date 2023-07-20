@@ -4,7 +4,7 @@ import UIKit
 // MARK: - Model
 
 public struct LabelModel {
-  public let text: String
+  public let text: String?
   public let textColor: UIColor?
   public let font: UIFont
   public let attributedText: NSMutableParagraphStyle?
@@ -14,14 +14,14 @@ public struct LabelModel {
   public let layer: LayerModel?
 
   public init(
-    text: String,
+    text: String? = nil,
     textColor: UIColor? = nil,
     font: UIFont,
     textAlignment: NSTextAlignment? = nil,
     attributedText: NSMutableParagraphStyle? = nil,
     numberOfLines: Int? = nil,
     lineBreakMode: NSLineBreakMode? = nil,
-    layer: LayerModel? = DefaultUIModelSettings.layer
+    layer: LayerModel? = nil
   ) {
     self.text = text
     self.textColor = textColor

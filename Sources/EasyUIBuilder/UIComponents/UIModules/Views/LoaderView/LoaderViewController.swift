@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-public class LoaderView: UIViewController {
+public class LoaderViewController: UIViewController {
 
   // MARK: - Private Typealiases
 
@@ -17,9 +17,10 @@ public class LoaderView: UIViewController {
 
   public init() {
     super.init(nibName: nil, bundle: nil)
-    modalPresentationStyle = .custom
+    modalPresentationStyle = .overCurrentContext
   }
-  
+
+  @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -42,7 +43,7 @@ public class LoaderView: UIViewController {
 
 // MARK: - Animations
 
-extension LoaderView {
+extension LoaderViewController {
   private func initalAnimation() {
     UIView.animate(withDuration: Constants.animations.duration) {
       self.view.backgroundColor = Constants.backgroundColor.initialBackgroundColor
@@ -52,7 +53,7 @@ extension LoaderView {
 
 // MARK: - Layouts
 
-extension LoaderView {
+extension LoaderViewController {
   private func layout() {
     addViews()
     indicatorViewLayout()

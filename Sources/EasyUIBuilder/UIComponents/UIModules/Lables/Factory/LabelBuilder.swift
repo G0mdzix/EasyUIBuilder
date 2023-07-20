@@ -6,9 +6,9 @@ import UIKit
 public enum LabelBuilder {
   public static func build(model: LabelModel) -> UILabel {
     let label = UILabel()
-    label.text = model.text
     label.font = model.font
     labelSettings(label: label, model: model)
+    guard model.layer != nil else { return label }
     guard let layer = model.layer else { return label }
     LayerConfigurator.configurUIElementsBasicLayer(element: label, model: layer)
     return label
@@ -43,8 +43,9 @@ private extension LabelBuilder {
 
   private static func validateLabelAttributedText(label: UILabel, model: LabelModel) {
     guard let attributedText = model.attributedText else { return }
+    guard let text = label.text else { return }
     label.attributedText = NSAttributedString(
-      string: model.text,
+      string: text,
       attributes: [NSAttributedString.Key.paragraphStyle: attributedText]
     ) 
   }

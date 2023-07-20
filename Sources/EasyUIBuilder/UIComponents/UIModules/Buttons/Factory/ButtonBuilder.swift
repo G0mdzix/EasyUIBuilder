@@ -39,9 +39,10 @@ private extension ButtonBuilder {
   }
 
   private static func validateButtonFont(button: UIButton, model: ButtonModel) {
-    guard model.font != nil else { return }
-    button.setTitleColor(model.fontColor, for: .normal)
-    button.titleLabel?.font = model.font
+    guard model.buttonTextModel != nil else { return }
+    button.setTitleColor(model.buttonTextModel?.fontColor, for: .normal)
+    button.titleLabel?.font = model.buttonTextModel?.font
+    button.setTitle(model.buttonTextModel?.text, for: .normal)
   }
 
   private static func validateButtonImage(button: UIButton, model: ButtonModel) {

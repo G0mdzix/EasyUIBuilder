@@ -5,22 +5,19 @@ import UIKit
 
 public struct ButtonModel {
   public let color: UIColor
-  public let font: UIFont?
-  public let fontColor: UIColor?
+  public let buttonTextModel: ButtonTextModel?
   public let image: UIImage?
   public let layer: LayerModel?
 
   public init(
     color: UIColor,
-    font: UIFont? = nil,
-    fontColor: UIColor? = nil,
+    buttonTextModel: ButtonTextModel? = nil,
     image: UIImage? = nil,
-    layer: LayerModel? = DefaultUIModelSettings.layer
+    layer: LayerModel? = nil
   ) {
     self.color = color
-    self.font = font
+    self.buttonTextModel = buttonTextModel
     self.image = image
-    self.fontColor = fontColor
     self.layer = layer
   }
 }

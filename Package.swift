@@ -12,14 +12,16 @@ let package = Package(
     ],
     dependencies: [
       .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
-      .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0")
+      .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0"),
+      .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.2.0")
     ],
     targets: [
         .target(
             name: "EasyUIBuilder",
-            dependencies: ["SnapKit", "SwiftGenPlugin"],
-            plugins: [
-              .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            dependencies: [
+              "SnapKit",
+              "SwiftGenPlugin",
+              .product(name: "Lottie", package: "lottie-spm")
             ]
         ),
         .testTarget(
