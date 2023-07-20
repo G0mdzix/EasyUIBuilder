@@ -43,9 +43,9 @@ private extension LabelBuilder {
 
   private static func validateLabelAttributedText(label: UILabel, model: LabelModel) {
     guard let attributedText = model.attributedText else { return }
-    guard let text = model.text else { return }
+    guard let text = label.text else { return }
     label.attributedText = NSAttributedString(
-      string: label.text ?? "",
+      string: text,
       attributes: [NSAttributedString.Key.paragraphStyle: attributedText]
     ) 
   }
