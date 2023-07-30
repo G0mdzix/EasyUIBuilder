@@ -15,7 +15,7 @@ enum LoaderUIFactory {
   static func backgroundUIView(size: CGFloat) -> UIView {
     let view = UIView()
     view.backgroundColor = .white
-    view.layer.cornerRadius = size / Constants.backgroundUIView.divider
+    view.layer.cornerRadius = size / Constants.BackgroundUIView.divider
     return view
   }
 }
@@ -23,7 +23,7 @@ enum LoaderUIFactory {
 // MARK: - Constants
 
 private enum Constants {
-  enum backgroundUIView {
+  enum BackgroundUIView {
     static let divider: CGFloat = 2
   }
 }

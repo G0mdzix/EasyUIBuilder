@@ -30,6 +30,8 @@ public enum EasyUIAssets {
   }
   public enum Images {
     public static let defaultIcon = ImageAsset(name: "defaultIcon")
+    public static let imSlide1 = ImageAsset(name: "imSlide1")
+    public static let test = ImageAsset(name: "test")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
