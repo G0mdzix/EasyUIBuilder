@@ -11,7 +11,7 @@ public class LoaderViewController: UIViewController {
   // MARK: - Subviews
 
   private let indicatorView = builder.indicatorViewBuild()
-  private let backgroundView = builder.backgroundUIView(size: Constants.backgroundView.size)
+  private let backgroundView = builder.backgroundUIView(size: Constants.BackgroundView.size)
 
   // MARK: - Lifecycle
 
@@ -37,7 +37,7 @@ public class LoaderViewController: UIViewController {
 
   override public func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    view.backgroundColor = Constants.backgroundColor.dismissBackgroundColor
+    view.backgroundColor = Constants.BackgroundColor.dismissBackgroundColor
   }
 }
 
@@ -45,8 +45,8 @@ public class LoaderViewController: UIViewController {
 
 extension LoaderViewController {
   private func initalAnimation() {
-    UIView.animate(withDuration: Constants.animations.duration) {
-      self.view.backgroundColor = Constants.backgroundColor.initialBackgroundColor
+    UIView.animate(withDuration: Constants.Animations.duration) {
+      self.view.backgroundColor = Constants.BackgroundColor.initialBackgroundColor
     }
   }
 }
@@ -74,7 +74,7 @@ extension LoaderViewController {
   private func backgroundUIViewLayout() {
     backgroundView.snp.makeConstraints { make in
       make.center.equalTo(indicatorView)
-      make.size.equalTo(Constants.backgroundView.size)
+      make.size.equalTo(Constants.BackgroundView.size)
     }
   }
 }
@@ -82,16 +82,16 @@ extension LoaderViewController {
 // MARK: - Constants
 
 private enum Constants {
-  enum backgroundColor {
+  enum BackgroundColor {
     static let initialBackgroundColor = EasyUIAssets.Colors.nightDark.color.withAlphaComponent(0.3)
     static let dismissBackgroundColor = EasyUIAssets.Colors.transparent.color
   }
 
-  enum backgroundView {
+  enum BackgroundView {
     static let size: CGFloat = 60
   }
 
-  enum animations {
+  enum Animations {
     static let duration = 0.5
   }
 }
