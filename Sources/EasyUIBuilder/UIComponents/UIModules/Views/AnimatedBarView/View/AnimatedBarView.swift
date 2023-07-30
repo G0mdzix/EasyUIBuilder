@@ -48,7 +48,6 @@ extension AnimatedBarView {
   }
 }
 
-
 // MARK: - Private functions
 
 extension AnimatedBarView {

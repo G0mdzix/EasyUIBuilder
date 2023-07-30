@@ -35,6 +35,7 @@ public class OnboardingKit {
     self.model = model
   }
 }
+
   // MARK: - Functions
 
 extension OnboardingKit {

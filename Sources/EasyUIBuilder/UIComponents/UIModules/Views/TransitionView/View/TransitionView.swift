@@ -68,12 +68,11 @@ extension TransitionView {
     UIView.transition(
       with: imageView,
       duration: Constants.ImageView.animationDuration,
-      options: .transitionCrossDissolve,
-      animations: {
-        guard let model = self.transitionModel else { return }
-        self.imageView.image = model.nextImage
-      }
-    )
+      options: .transitionCrossDissolve
+    ) {
+      guard let model = self.transitionModel else { return }
+      self.imageView.image = model.nextImage
+    }
   }
 }
 
@@ -118,11 +117,7 @@ extension TransitionView {
   }
 
   private func handleNextSlideIfNeeded() {
-    if model.slides.indices.contains(index + 1) {
-      setNextSlide()
-    } else {
-      setSlidesToFirst()
-    }
+    model.slides.indices.contains(index + 1) ? setNextSlide() : setSlidesToFirst()
   }
 
   private func setNextSlide() {
