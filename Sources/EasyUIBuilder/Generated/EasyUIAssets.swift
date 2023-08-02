@@ -25,6 +25,10 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum EasyUIAssets {
   public enum Colors {
+    public static let beige = ColorAsset(name: "Beige")
+    public static let lightPurple = ColorAsset(name: "LightPurple")
+    public static let midPurple = ColorAsset(name: "MidPurple")
+    public static let navyPurple = ColorAsset(name: "NavyPurple")
     public static let nightDark = ColorAsset(name: "nightDark")
     public static let transparent = ColorAsset(name: "transparent")
   }

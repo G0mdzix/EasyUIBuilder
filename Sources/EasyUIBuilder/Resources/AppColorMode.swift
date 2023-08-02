@@ -23,7 +23,7 @@ public enum AppColorMode {
     }
   }
 
-  static func currentMode() -> AppColorMode {
+  public static func currentMode() -> AppColorMode {
     if UITraitCollection.current.userInterfaceStyle == .dark {
       return .dark
     } else {
